@@ -25,10 +25,8 @@ if __name__ == "__main__" :
     #train step
     train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
     merged = tf.summary.merge_all()
-#    init = tf.initialize_all_variables()
     sess = tf.Session()
     tf.global_variables_initializer().run(session=sess)
-#    sess.run(init)
 
     train_writer = tf.summary.FileWriter('tmp/train',sess.graph)
     test_writer = tf.summary.FileWriter('tmp/test') 
