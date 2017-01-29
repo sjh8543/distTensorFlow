@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter-tensorboard
+  labels:
+    name: jupyter-tensorboard
+  namespace: default
+spec:
+  containers:
+  - name: jupyter-notebook
+    image: "gcr.io/test-project-153004/tensorflow-notebook"
+    ports:
+     - containerPort: 8888
+    volumeMounts:
+    - mountPath: /log
+      name: log-dir
+  - name: tensorboard
+    image: "gcr.io/test-project-153004/tensor_dist_server"
+    ports:
+     - containerPort: 6006
+    command: ["python"]
+    args: ["-m","tensorflow.tensorboard","--logdir=/log"]
+    volumeMounts:
+    - mountPath: /log
+      name: log-dir
+  volumes:
+  - name: log-dir
+    emptyDir: {}
