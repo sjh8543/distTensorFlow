@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ps-0
+  name: worker-2
   labels: 
-    name: ps-0
+    name: worker-2
   namespace: default
 spec:  # specification of the pod's contents
   containers:
-  - name: ps-0
+  - name: worker-2
     image : "gcr.io/test-project-153004/tensor_dist_server"
     env:
     - name: MESSAGE
@@ -17,8 +17,8 @@ spec:  # specification of the pod's contents
     - name: WORKER
       value: "--worker_hosts=worker-0.default.svc.cluster.local:2222,worker-1.default.svc.cluster.local:2222,worker-2.default.svc.cluster.local:2222"
     - name: JOB
-      value: "--job_name=ps"
+      value: "--job_name=worker"
     - name: TASK
-      value: "--task_index=0"
+      value: "--task_index=2"
     command: ["python"]
     args: ["$(MESSAGE)" ,"$(PS)" ,"$(WORKER)", "$(JOB)" , "$(TASK)"]

@@ -13,9 +13,9 @@ spec:  # specification of the pod's contents
     - name: MESSAGE
       value: "/home/runtime/SimpleDistServer.py"
     - name: PS
-      value: "--ps_hosts=ps-0.default.svc.cluster.local:2222"
+      value: "--ps_hosts=ps-0.default.svc.cluster.local:2222,ps-1.default.svc.cluster.local:2222"
     - name: WORKER
-      value: "--worker_hosts=worker-0.default.svc.cluster.local:2222,worker-1.default.svc.cluster.local:2222"
+      value: "--worker_hosts=worker-0.default.svc.cluster.local:2222,worker-1.default.svc.cluster.local:2222,worker-2.default.svc.cluster.local:2222"
     - name: JOB
       value: "--job_name=worker"
     - name: TASK
